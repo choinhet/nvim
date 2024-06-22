@@ -1,0 +1,21 @@
+local opts = { noremap = true, silent = true }
+local map = vim.api.nvim_set_keymap
+
+map('v', '<', '<gv', opts)
+map('v', '>', '>gv', opts)
+map('v', '=', '=gv', opts)
+map('n', 'Y', 'y$', opts)
+map('v', 'p', 'pgvy', opts)
+map('n', '<leader>t', ':q<CR>', opts)
+map('n', '<leader>a', 'ggVG', opts)
+map('n', '<leader>p', '"9dawp', opts)
+map('n', '<C-u>', '<C-u>zz', opts)
+map('n', '<C-d>', '<C-d>zz', opts)
+map('n', 'n', 'nzz', opts)
+map('n', 'N', 'Nzz', opts)
+map('n', '<leader>sa', '"5yiw:%s/<c-r>5/', opts)
+map('n', '<leader>s', '"5yiw:s/<c-r>5/', opts)
+map('v', '<leader>sa', '"5y:%s/<c-r>5/', opts)
+map('v', '<leader>s', '"5y:s/<c-r>5/', opts)
+map('n', '<leader>x', 'gdf=wy$<c-o>"9diwhp<c-i>dd<c-o>zz', opts)
+map('n', '*', '*``', opts)
