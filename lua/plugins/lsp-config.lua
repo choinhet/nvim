@@ -26,8 +26,9 @@ return {
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "gh", vim.diagnostic.goto_next, {})
-			vim.keymap.set("n", "gH", vim.diagnostic.goto_prev, {})
+			vim.keymap.set("n", "ge", vim.diagnostic.goto_next, {})
+			vim.keymap.set("n", "gE", vim.diagnostic.goto_prev, {})
+			vim.keymap.set("n", "gh", vim.diagnostic.open_float, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 			vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
