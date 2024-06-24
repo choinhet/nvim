@@ -10,11 +10,19 @@ return {
 			local dap = require("dap")
 			require("dapui").setup()
 			require("dap-python").setup("python3")
+			require("dap-python").resolve_python = function()
+				local path = require("venv-selector").get_active_path()
+				return path
+			end
 
 			dap.listeners.before.attach.dapui_config = function()
 				require("dapui").open()
 			end
 			dap.listeners.before.launch.dapui_config = function()
+				require("dap-python").resolve_python = function()
+					local path = require("venv-selector").get_active_path()
+					return path
+				end
 				require("dapui").open()
 			end
 			dap.listeners.before.event_terminated.dapui_config = function()
