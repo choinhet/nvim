@@ -4,6 +4,7 @@ return {
     config = function()
         require("venv-selector").setup({})
     end,
+    branch="regexp",
     event = "VeryLazy",
     keys = {
         { "<leader>vs", "<cmd>VenvSelect<cr>" },
