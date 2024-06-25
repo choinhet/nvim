@@ -64,3 +64,4 @@ bind-key s split-window -h -c "#{pane_current_path}"
 
 # Split vertical
 bind-key v split-window -v -c "#{pane_current_path}"
+

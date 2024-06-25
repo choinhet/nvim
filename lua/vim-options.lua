@@ -8,5 +8,5 @@ vim.cmd("set backspace=2")
 vim.cmd("set history=10000")
 
 vim.g.mapleader = " "
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.o.clipboard = "unnamedplus"
 vim.wo.relativenumber = true
