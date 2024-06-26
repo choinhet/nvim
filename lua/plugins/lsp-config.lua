@@ -87,7 +87,7 @@ return {
 			vim.keymap.set("n", "gh", vim.diagnostic.open_float, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
 			vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, {})
-			vim.keymap.set("v", "<space>ca", vim.lsp.buf.range_code_action, {})
+			vim.keymap.set("v", "<space>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", {})
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
 
 			for _, server in ipairs(servers) do
