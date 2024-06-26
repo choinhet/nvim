@@ -7,34 +7,61 @@ local servers = {
     "jsonls",
     "html",
     "cssls",
-    "pyright",
-    "ruff_lsp",
-    "tsserver",
-    "jedi_language_server",
+    "pylsp",
 }
 
 return {
-	{
-		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
-			vim.g.mason_python_path = "/usr/bin/python3.12"
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = servers,
-			})
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+            vim.g.mason_python_path = "/usr/bin/python3.12"
+        end,
+        init = function(_)
+            local pylsp = require("mason-registry").get_package("python-lsp-server")
+            pylsp:on("install:success", function()
+                local function mason_package_path(package)
+                    local path = vim.fn.resolve(vim.fn.stdpath("data") .. "/mason/packages/" .. package)
+                    return path
+                end
+
+                local path = mason_package_path("python-lsp-server")
+                local command = path .. "/venv/bin/pip"
+                local args = {
+                    "install",
+                    "-U",
+                    "pylsp-rope",
+                    "python-lsp-black",
+                    "python-lsp-isort",
+                    "python-lsp-ruff",
+                    "pyls-memestra",
+                    "pylsp-mypy",
+                }
+
+                require("plenary.job")
+                    :new({
+                        command = command,
+                        args = args,
+                        cwd = path,
+                    })
+                    :start()
+            end)
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = servers,
+            })
+        end,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local cmp = require("cmp")
-			local lspconfig = require("lspconfig")
+            local lspconfig = require("lspconfig")
 
             vim.opt.winhighlight = cmp.config.window.bordered().winhighlight -- Hover window looks nice
 
@@ -68,6 +95,21 @@ return {
                 })
             end
 
-		end,
-	},
+            lspconfig.pylsp.setup({
+                cmd = { "pylsp" },
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pylsp_rope = { enabled = true },
+                            rope_autoimport = {enabled = true}
+                        },
+                    },
+                },
+                flags = {
+                    debounce_text_changes = 200,
+                },
+                capabilities = capabilities,
+            })
+        end,
+    },
 }
