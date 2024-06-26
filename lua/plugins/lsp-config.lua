@@ -10,6 +10,7 @@ local servers = {
     "pyright",
     "ruff_lsp",
     "tsserver",
+    "jedi_language_server",
 }
 
 return {
@@ -32,7 +33,24 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local cmp = require("cmp")
 			local lspconfig = require("lspconfig")
+
+            vim.opt.winhighlight = cmp.config.window.bordered().winhighlight -- Hover window looks nice
+
+            vim.diagnostic.config({
+                float = { border = "rounded" },
+                virtual_text = true,
+                signs = true,
+                update_in_insert = true,
+                underline = true,
+            })
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                border = "rounded",
+            })
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                border = "rounded",
+            })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
