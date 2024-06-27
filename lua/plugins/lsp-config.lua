@@ -8,6 +8,7 @@ local servers = {
     "html",
     "cssls",
     "pylsp",
+    "basedpyright",
 }
 
 return {
@@ -16,36 +17,6 @@ return {
         config = function()
             require("mason").setup()
             vim.g.mason_python_path = "/usr/bin/python3.12"
-        end,
-        init = function(_)
-            local pylsp = require("mason-registry").get_package("python-lsp-server")
-            pylsp:on("install:success", function()
-                local function mason_package_path(package)
-                    local path = vim.fn.resolve(vim.fn.stdpath("data") .. "/mason/packages/" .. package)
-                    return path
-                end
-
-                local path = mason_package_path("python-lsp-server")
-                local command = path .. "/venv/bin/pip"
-                local args = {
-                    "install",
-                    "-U",
-                    "pylsp-rope",
-                    "python-lsp-black",
-                    "python-lsp-isort",
-                    "python-lsp-ruff",
-                    "pyls-memestra",
-                    "pylsp-mypy",
-                }
-
-                require("plenary.job")
-                    :new({
-                        command = command,
-                        args = args,
-                        cwd = path,
-                    })
-                    :start()
-            end)
         end,
     },
     {
@@ -60,10 +31,7 @@ return {
         "neovim/nvim-lspconfig",
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local cmp = require("cmp")
             local lspconfig = require("lspconfig")
-
-            vim.opt.winhighlight = cmp.config.window.bordered().winhighlight -- Hover window looks nice
 
             vim.diagnostic.config({
                 float = { border = "rounded" },
@@ -72,10 +40,11 @@ return {
                 update_in_insert = true,
                 underline = true,
             })
+
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
                 border = "rounded",
             })
-            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, {
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
                 border = "rounded",
             })
 
@@ -103,6 +72,12 @@ return {
                         plugins = {
                             pylsp_rope = { enabled = true },
                             rope_autoimport = { enabled = true },
+                            basedpyright = {
+                                enabled = true,
+                                config = {
+                                    strict = false,
+                                },
+                            },
                         },
                     },
                 },
@@ -111,6 +86,28 @@ return {
                 },
                 capabilities = capabilities,
             })
+        end,
+    },
+    {
+        "mfussenegger/nvim-dap",
+        config = function()
+            local dap = require('dap')
+            dap.adapters.python = {
+                type = 'executable',
+                command = '/usr/bin/python3.12', -- Adjust to your python path
+                args = { '-m', 'debugpy.adapter' },
+            }
+            dap.configurations.python = {
+                {
+                    type = 'python',
+                    request = 'launch',
+                    name = "Launch file",
+                    program = "${file}",
+                    pythonPath = function()
+                        return '/usr/bin/python3.12' -- Adjust to your python path
+                    end,
+                },
+            }
         end,
     },
 }
