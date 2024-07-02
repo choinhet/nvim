@@ -1,4 +1,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+vim.g.python3_host_prog = "C:/Users/admin/.pyenv/versions/3.9.10/bin/python"
+
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.system({
         "git",
@@ -26,3 +29,7 @@ vim.cmd [[
   endfunction
   autocmd SwapExists * call SkipSwapFilePrompt()
 ]]
+
+vim.cmd([[
+  let $PYTHONPATH="C:\\Users\\admin\\projects"
+]])

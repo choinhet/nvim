@@ -17,7 +17,7 @@ return {
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup()
-			vim.g.mason_python_path = "/usr/bin/python3.12"
+			vim.g.mason_python_path = "C:\\Users\\admin\\projects\\venv319"
 		end,
 	},
 	{
