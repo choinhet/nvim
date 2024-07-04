@@ -65,3 +65,4 @@ bind-key s split-window -h -c "#{pane_current_path}"
 # Split vertical
 bind-key v split-window -v -c "#{pane_current_path}"
 
+# cd ~/.tmux/plugins/tpm/scripts && ./install_plugins.sh
