@@ -1,9 +1,6 @@
 local servers = {
-	"biome",
-	"kotlin_language_server",
 	"lua_ls",
 	"marksman",
-	"elixirls",
 	"jsonls",
 	"html",
 	"cssls",
