@@ -4,8 +4,7 @@ local servers = {
 	"jsonls",
 	"html",
 	"cssls",
-	"pyright",
-    "ruff",
+    "pylsp",
     "tsserver"
 }
 
@@ -14,7 +13,7 @@ return {
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup()
-			vim.g.mason_python_path = "/usr/bin/python3.12"
+			vim.g.mason_python_path = "/home/choinhet/.pyenv/versions/3.10.14/envs/py310"
 		end,
 	},
 	{
@@ -67,7 +66,7 @@ return {
 			local dap = require("dap")
 			dap.adapters.python = {
 				type = "executable",
-				command = "/usr/bin/python3.12", -- Adjust to your python path
+				command = "/home/choinhet/.pyenv/versions/3.10.14/envs/py310", -- Adjust to your python path
 				args = { "-m", "debugpy.adapter" },
 			}
 			dap.configurations.python = {
@@ -77,7 +76,7 @@ return {
 					name = "Launch file",
 					program = "${file}",
 					pythonPath = function()
-						return "/usr/bin/python3.12" -- Adjust to your python path
+						return "/home/choinhet/.pyenv/versions/3.10.14/envs/py310" -- Adjust to your python path
 					end,
 				},
 			}
