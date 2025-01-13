@@ -17,14 +17,8 @@ return require('packer').startup(function(use)
 
 	use({'nvim-treesitter/nvim-treesitter'}, { run = ':TSUpdate' })
     use({'mg979/vim-visual-multi'}, {branch = 'master'})
-
-	use({'nvim-treesitter/playground'})
 	use({'theprimeagen/harpoon'})
-	use({'mbbill/undotree'})
-
-	use({'tpope/vim-fugitive'})
 	use({'tpope/vim-surround'})
-
 	use({'williamboman/mason.nvim'})
 	use({'williamboman/mason-lspconfig.nvim'})
 	use({'neovim/nvim-lspconfig'})
