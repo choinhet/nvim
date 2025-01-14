@@ -9,6 +9,19 @@ require('lspconfig').lua_ls.setup({
         }
     }
 })
+
+require('lspconfig').eslint.setup({
+  settings = {
+    packageManager = 'yarn'
+  },
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
+
 local lspconfig_defaults = require('lspconfig').util.default_config
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
     'force',
@@ -16,11 +29,12 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
     require('cmp_nvim_lsp').default_capabilities()
 )
 
+
+
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
         local opts = { buffer = event.buf }
-
         vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)

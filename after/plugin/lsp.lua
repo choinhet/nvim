@@ -10,6 +10,11 @@ require('mason-lspconfig').setup({
         'html',
         'jsonls',
         'marksman',
+        'ts_ls',
+        'tailwindcss',
+        'emmet_ls',
+        'marksman',
+        'taplo',
     },
     handlers = {
         function(server_name)
@@ -30,3 +35,4 @@ cmp.setup({
     },
     mapping = cmp.mapping.preset.insert({}),
 })
+
