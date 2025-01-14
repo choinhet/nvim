@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.opt.clipboard = "unnamed,unnamedplus"
+vim.o.shell="powershell.exe"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
