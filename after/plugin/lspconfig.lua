@@ -11,15 +11,15 @@ require('lspconfig').lua_ls.setup({
 })
 
 require('lspconfig').eslint.setup({
-  settings = {
-    packageManager = 'yarn'
-  },
-  on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
+    settings = {
+        packageManager = 'yarn'
+    },
+    on_attach = function(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+        })
+    end,
 })
 
 local lspconfig_defaults = require('lspconfig').util.default_config
@@ -29,6 +29,12 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
     require('cmp_nvim_lsp').default_capabilities()
 )
 
+require('lspconfig').tailwindcss.setup {
+    cmd = { "tailwindcss-language-server", "--stdio" },
+    filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+    root_dir = require('lspconfig').util.root_pattern("tailwind.config.js", "package.json"),
+    settings = {},
+}
 
 
 vim.api.nvim_create_autocmd('LspAttach', {
