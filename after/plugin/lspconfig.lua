@@ -53,3 +53,34 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
     end,
 })
+
+local cmp = require('cmp')
+
+cmp.setup({
+    preselect = cmp.PreselectMode.None, -- Disable automatic preselection
+    completion = {
+        completeopt = 'menu,menuone,noinsert,noselect', -- Avoid preselecting items
+    },
+    mapping = {
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Confirm only if explicitly selected
+    },
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'path' },
+    }),
+})
