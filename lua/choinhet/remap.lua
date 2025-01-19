@@ -37,6 +37,7 @@ vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste and reselect, keeping register 
 -- Scroll mappings with cursor centering
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center cursor' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center cursor' })
+
 -- Prevent copying empty lines to the clipboard when deleting in normal mode
 vim.keymap.set('n', 'dd', function()
     if vim.api.nvim_get_current_line():match("^%s*$") then
