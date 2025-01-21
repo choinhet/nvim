@@ -35,5 +35,5 @@ return require('packer').startup(function(use)
         end
     }
 
-    use({"sbulav/nredir.nvim"})
+    use({ "sbulav/nredir.nvim" })
 end)

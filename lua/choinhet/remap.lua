@@ -70,4 +70,10 @@ end, { expr = true, desc = "Delete selection without copying if all lines are em
 
 vim.keymap.set('n', '<leader>o', function() vim.ui.open(vim.fn.expand("%")) end)
 
+vim.keymap.set('n', '<leader>rp', function()
+    local current_filepath = vim.fn.expand("%:.:r")
+    local module_path = current_filepath:gsub("[\\/]", ".")
+    local command = string.format(" python -m '%s'", module_path)
+    vim.cmd("Nredir" .. command)
 
+end)
