@@ -67,3 +67,7 @@ vim.keymap.set('v', 'd', function()
         return "d"
     end
 end, { expr = true, desc = "Delete selection without copying if all lines are empty" })
+
+vim.keymap.set('n', '<leader>o', function() vim.ui.open(vim.fn.expand("%")) end)
+
+
