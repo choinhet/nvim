@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.opt.clipboard = "unnamed,unnamedplus"
-vim.o.shell = "powershell.exe"
+
+vim.opt.shell = "pwsh"
+vim.opt.shellcmdflag = "-NoLogo -Command"
+vim.opt.shellquote = ""
+vim.opt.shellxquote = ""
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
