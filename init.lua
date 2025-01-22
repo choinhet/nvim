@@ -1,14 +1,14 @@
 require("choinhet")
 
 vim.g.firenvim_config = {
-    globalSettings = { alt = "all" },
+    globalSettings = { alt = "all" }, -- Allow manual activation with Ctrl+E
     localSettings = {
         [".*"] = {
-            cmdline  = "neovim",
+            cmdline  = "none",          -- Disable the command line for automatic engagement
             content  = "text",
-            priority = 0,
-            selector = "textarea",
-            takeover = "always"
+            priority = 0,               -- Lower priority to prevent auto-engaging
+            selector = "textarea",      -- Keep the selector for manual activation
+            takeover = "never"          -- Disable automatic takeover
         }
     }
 }
