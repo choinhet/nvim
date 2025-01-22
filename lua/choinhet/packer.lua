@@ -34,12 +34,5 @@ return require('packer').startup(function(use)
             require("nvim-autopairs").setup {}
         end
     }
-    use({"tpope/vim-dadbod"})
-    use {
-        "kristijanhusak/vim-dadbod-ui",
-        requires = { 'tpope/vim-dadbod' }
-    }
-    use({"kristijanhusak/vim-dadbod-completion"})
-
     use({ "sbulav/nredir.nvim" })
 end)
