@@ -42,32 +42,6 @@ vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste and reselect, keeping register 
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center cursor' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center cursor' })
 
--- Prevent copying empty lines to the clipboard when deleting in normal mode
-vim.keymap.set('n', 'dd', function()
-    if vim.api.nvim_get_current_line():match("^%s*$") then
-        return [["_dd]]
-    else
-        return "dd"
-    end
-end, { expr = true, desc = "Delete line without copying if empty" })
-
--- Prevent copying empty lines to the clipboard when deleting in visual mode
-vim.keymap.set('v', 'd', function()
-    local lines = vim.fn.getline("'<", "'>") -- Get all lines in the visual selection
-    local all_empty = true
-    for _, line in ipairs(lines) do
-        if not line:match("^%s*$") then
-            all_empty = false
-            break
-        end
-    end
-    if all_empty then
-        return [["_d]]
-    else
-        return "d"
-    end
-end, { expr = true, desc = "Delete selection without copying if all lines are empty" })
-
 vim.keymap.set('n', '<leader>o', function() vim.ui.open(vim.fn.expand("%")) end)
 
 vim.keymap.set('n', '<leader>rp', function()
