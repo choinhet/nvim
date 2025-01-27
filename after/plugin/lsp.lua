@@ -6,7 +6,7 @@ require('mason-lspconfig').setup({
         'pyright',
         'ruff',
         'cssls',
-        'eslint',
+        'eslint-lsp',
         'html',
         'jsonls',
         'marksman',
@@ -15,6 +15,7 @@ require('mason-lspconfig').setup({
         'emmet_ls',
         'marksman',
         'taplo',
+        'prettier',
     },
     handlers = {
         function(server_name)
