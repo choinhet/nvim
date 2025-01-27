@@ -23,7 +23,6 @@ vim.opt.incsearch = true
 
 vim.opt.updatetime = 50
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<space>a", "ggVG", { noremap = true, silent = true })
 vim.keymap.set("n", "<space>f", "")
 
@@ -50,3 +49,5 @@ vim.keymap.set('n', '<leader>rp', function()
     local command = string.format("Nredir !python -m %s", module_path)
     vim.cmd(command)
 end)
+
+vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true })
