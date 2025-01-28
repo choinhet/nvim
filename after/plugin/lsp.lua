@@ -1,22 +1,21 @@
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
-        'lua_ls',
-        'rust_analyzer',
-        'pyright',
-        'ruff',
-        'cssls',
-        'eslint-lsp',
-        'html',
-        'jsonls',
-        'marksman',
-        'ts_ls',
-        'tailwindcss',
-        'emmet_ls',
-        'marksman',
-        'taplo',
-        'prettier',
-    },
+    "lua_ls",                   -- Lua
+    "rust_analyzer",            -- Rust
+    "pyright",                  -- Python LSP
+    "ruff",                     -- Python linter
+    "cssls",                    -- CSS LSP (CSS, SCSS, LESS)
+    "html",                     -- HTML LSP
+    "jsonls",                   -- JSON LSP
+    "marksman",                 -- Markdown LSP
+    "tsserver",                 -- TypeScript/JavaScript LSP
+    "tailwindcss",              -- Tailwind CSS LSP
+    "taplo",                    -- TOML LSP
+    "gopls",                    -- Go LSP
+    "eslint",                   -- ESLint for JS/TS
+    "emmet_ls",                 -- Emmet LSP
+},
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({})
