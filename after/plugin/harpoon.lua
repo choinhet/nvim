@@ -1,10 +1,3 @@
-require("harpoon").setup({
-    menu = {
-        width = 100,
-        heigh = 15,
-    },
-})
-
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
