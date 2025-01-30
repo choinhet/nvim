@@ -1,7 +1,4 @@
 require("lazy").setup({
-    -- Plugin Manager
-    { "wbthomason/packer.nvim", lazy = true },
-
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
