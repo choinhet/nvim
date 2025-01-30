@@ -11,7 +11,7 @@ require("lazy").setup({
     },
 
     -- Colorscheme
-    { "navarasu/onedark.nvim", lazy = false, priority = 1000, config = function() require("onedark").setup() end },
+    { "navarasu/onedark.nvim",  lazy = false, priority = 1000, config = function() require("onedark").setup() end },
 
     -- Treesitter
     {
@@ -21,27 +21,27 @@ require("lazy").setup({
     },
 
     -- Visual Multi-cursor
-    { "mg979/vim-visual-multi", branch = "master", lazy = false },
+    { "mg979/vim-visual-multi",            branch = "master",                     lazy = false },
 
     -- Harpoon
-    { "theprimeagen/harpoon", event = "VeryLazy" },
+    { "theprimeagen/harpoon",              event = "VeryLazy" },
 
     -- Surround
-    { "tpope/vim-surround", event = "VeryLazy" },
+    { "tpope/vim-surround",                event = "VeryLazy" },
 
     -- Mason (LSP Manager)
-    { "williamboman/mason.nvim", cmd = "Mason" },
+    { "williamboman/mason.nvim",           cmd = "Mason" },
     { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
 
     -- LSP Config
-    { "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
+    { "neovim/nvim-lspconfig",             event = { "BufReadPre", "BufNewFile" } },
 
     -- Autocompletion (nvim-cmp)
-    { "hrsh7th/nvim-cmp", event = "InsertEnter" },
-    { "hrsh7th/cmp-nvim-lsp", dependencies = { "hrsh7th/nvim-cmp" } },
+    { "hrsh7th/nvim-cmp",                  event = "InsertEnter" },
+    { "hrsh7th/cmp-nvim-lsp",              dependencies = { "hrsh7th/nvim-cmp" } },
 
     -- Snippets
-    { "L3MON4D3/LuaSnip", event = "InsertEnter" },
+    { "L3MON4D3/LuaSnip",                  event = "InsertEnter" },
 
     -- Firenvim (Browser Plugin)
     {
@@ -66,4 +66,3 @@ require("lazy").setup({
         cmd = "Oil",
     },
 })
-

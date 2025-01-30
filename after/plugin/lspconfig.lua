@@ -4,7 +4,12 @@ require('lspconfig').lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
+                -- virtual_text = false, -- disable inline diagnostics
                 globals = { 'vim' }
+                -- float = {
+                --     source = 'always',
+                --     border = 'rounded'
+                -- }
             }
         }
     }
@@ -19,6 +24,7 @@ require('lspconfig').eslint.setup({
             buffer = bufnr,
             command = "EslintFixAll",
         })
+        vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.cmd("EslintFixAll") end, { buffer = bufnr })
     end,
 })
 
@@ -48,9 +54,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'go', function() vim.lsp.buf.type_definition() end, opts)
         vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
         vim.keymap.set('n', 'gs', function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set('n', '<F2>', function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, opts)
+        vim.keymap.set('n', 'gh', function() vim.diagnostic.open_float(nil, { focusable = true, border = "rounded" }) end, opts)
+        vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, opts)
+        vim.keymap.set('n', 'ge', function()
+            vim.diagnostic.setqflist()
+            vim.cmd('copen')
+        end, opts)
     end,
 })
 

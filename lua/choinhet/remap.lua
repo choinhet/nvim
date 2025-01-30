@@ -51,3 +51,7 @@ vim.keymap.set('n', '<leader>rp', function()
 end)
 
 vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>cp", function()
+  vim.fn.setreg("+", vim.fn.expand("%:t"))
+end, { desc = "Copy current file name to clipboard" })
