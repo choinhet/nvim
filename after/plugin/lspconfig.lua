@@ -4,7 +4,12 @@ require('lspconfig').lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
+                -- virtual_text = false, -- disable inline diagnostics
                 globals = { 'vim' }
+                -- float = {
+                --     source = 'always',
+                --     border = 'rounded'
+                -- }
             }
         }
     }
@@ -90,16 +95,3 @@ cmp.setup({
         { name = 'path' },
     }),
 })
-
-cmp.setup({
-    sources = {
-        {name = 'nvim_lsp'},
-    },
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({}),
-})
-

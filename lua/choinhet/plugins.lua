@@ -1,4 +1,7 @@
 require("lazy").setup({
+    -- Plugin Manager
+    { "wbthomason/packer.nvim", lazy = true },
+
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
@@ -8,15 +11,7 @@ require("lazy").setup({
     },
 
     -- Colorscheme
-    {
-        "navarasu/onedark.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("onedark").setup()
-            require('onedark').load()
-        end
-    },
+    { "navarasu/onedark.nvim",  lazy = false, priority = 1000, config = function() require("onedark").setup() end },
 
     -- Treesitter
     {
@@ -25,68 +20,28 @@ require("lazy").setup({
         event = { "BufReadPost", "BufNewFile" },
     },
 
+    -- Visual Multi-cursor
+    { "mg979/vim-visual-multi",            branch = "master",                     lazy = false },
+
     -- Harpoon
-    {
-        "theprimeagen/harpoon",
-        config = function()
-            require("harpoon").setup({
-                menu = {
-                    width = 100,
-                    heigh = 15,
-                },
-            })
-        end,
-    },
+    { "theprimeagen/harpoon",              event = "VeryLazy" },
 
     -- Surround
-    { "tpope/vim-surround" },
+    { "tpope/vim-surround",                event = "VeryLazy" },
 
     -- Mason (LSP Manager)
-    {
-        "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup({})
-        end,
-        cmd = "Mason"
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "rust_analyzer",
-                    "pyright",
-                    "ruff",
-                    "cssls",
-                    "html",
-                    "jsonls",
-                    "marksman",
-                    "tsserver",
-                    "tailwindcss",
-                    "taplo",
-                    "gopls",
-                    "eslint",
-                    "emmet_ls",
-                },
-                handlers = {
-                    function(server_name)
-                        require('lspconfig')[server_name].setup({})
-                    end,
-                }
-            })
-        end,
-    },
+    { "williamboman/mason.nvim",           cmd = "Mason" },
+    { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
 
     -- LSP Config
-    { "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
+    { "neovim/nvim-lspconfig",             event = { "BufReadPre", "BufNewFile" } },
 
     -- Autocompletion (nvim-cmp)
-    { "hrsh7th/nvim-cmp",      event = "InsertEnter" },
-    { "hrsh7th/cmp-nvim-lsp",  dependencies = { "hrsh7th/nvim-cmp" } },
+    { "hrsh7th/nvim-cmp",                  event = "InsertEnter" },
+    { "hrsh7th/cmp-nvim-lsp",              dependencies = { "hrsh7th/nvim-cmp" } },
 
     -- Snippets
-    { "L3MON4D3/LuaSnip",      event = "InsertEnter" },
+    { "L3MON4D3/LuaSnip",                  event = "InsertEnter" },
 
     -- Firenvim (Browser Plugin)
     {
