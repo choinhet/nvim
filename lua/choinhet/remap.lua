@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.opt.clipboard = "unnamed,unnamedplus"
 
+vim.opt.signcolumn = 'yes'
 vim.opt.shell = "pwsh"
 vim.opt.shellcmdflag = "-NoLogo -Command"
 vim.opt.shellquote = ""
@@ -15,6 +16,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+vim.g.python3_host_prog = 'python'
 
 vim.opt.wrap = false
 
