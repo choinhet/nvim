@@ -8,7 +8,14 @@ require("lazy").setup({
     },
 
     -- Colorscheme
-    { "navarasu/onedark.nvim",  lazy = false, priority = 1000, config = function() require("onedark").setup() end },
+    {
+        "navarasu/onedark.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("onedark").setup()
+        end
+    },
 
     -- Treesitter
     {
@@ -62,4 +69,64 @@ require("lazy").setup({
         dependencies = { "echasnovski/mini.icons" },
         cmd = "Oil",
     },
+    -- Debug Adapter Protocol client
+    {
+        'mfussenegger/nvim-dap',
+        config = function()
+            -- Key mappings for nvim-dap
+            local dap = require('dap')
+            vim.keymap.set('n', '<leader>pd', dap.continue, { desc = 'Start Python Debugging' })
+            vim.keymap.set('n', '<leader>pb', dap.toggle_breakpoint, { desc = 'Toggle Breakpoint' })
+            vim.keymap.set('n', '<leader>po', dap.step_over, { desc = 'Step Over' })
+            vim.keymap.set('n', '<leader>pi', dap.step_into, { desc = 'Step Into' })
+            vim.keymap.set('n', '<leader>pu', dap.step_out, { desc = 'Step Out' })
+        end,
+    },
+    -- DAP UI for a better debugging experience
+    {
+        'rcarriga/nvim-dap-ui',
+        dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
+        config = function()
+            require('dapui').setup()
+            -- Automatically open and close the DAP UI
+            local dap, dapui = require('dap'), require('dapui')
+            dap.listeners.after.event_initialized['dapui_config'] = function()
+                dapui.open()
+            end
+            dap.listeners.before.event_terminated['dapui_config'] = function()
+                dapui.close()
+            end
+            dap.listeners.before.event_exited['dapui_config'] = function()
+                dapui.close()
+            end
+        end,
+    },
+    -- Python-specific DAP configuration
+    {
+        'mfussenegger/nvim-dap-python',
+        ft = 'python',
+        config = function()
+            local dap_python = require('dap-python')
+            local function get_python_path()
+                local venv_path = os.getenv('VIRTUAL_ENV')
+                if venv_path then
+                    return venv_path .. '\\Scripts\\python.exe'
+                end
+                return 'python'
+            end
+            dap_python.setup(get_python_path())
+
+            require('dap').configurations.python = {
+                {
+                    type = 'python',
+                    request = 'launch',
+                    name = 'Launch Module',
+                    module = function()
+                        local current_filepath = vim.fn.expand("%:.:r")
+                        return current_filepath:gsub("[\\/]", ".")
+                    end,
+                },
+            }
+        end,
+    }
 })
