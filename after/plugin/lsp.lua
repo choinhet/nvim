@@ -9,7 +9,7 @@ require('mason-lspconfig').setup({
     "html",                     -- HTML LSP
     "jsonls",                   -- JSON LSP
     "marksman",                 -- Markdown LSP
-    "ts_ls",                    -- TypeScript/JavaScript LSP
+    "tsserver",                 -- TypeScript/JavaScript LSP
     "tailwindcss",              -- Tailwind CSS LSP
     "taplo",                    -- TOML LSP
     "gopls",                    -- Go LSP
