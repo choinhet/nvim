@@ -75,11 +75,11 @@ require("lazy").setup({
         config = function()
             -- Key mappings for nvim-dap
             local dap = require('dap')
-            vim.keymap.set('n', '<leader>pd', dap.continue, { desc = 'Start Python Debugging' })
-            vim.keymap.set('n', '<leader>pb', dap.toggle_breakpoint, { desc = 'Toggle Breakpoint' })
-            vim.keymap.set('n', '<leader>po', dap.step_over, { desc = 'Step Over' })
-            vim.keymap.set('n', '<leader>pi', dap.step_into, { desc = 'Step Into' })
-            vim.keymap.set('n', '<leader>pu', dap.step_out, { desc = 'Step Out' })
+            vim.keymap.set('n', '<leader>dn', dap.continue, { desc = 'Start Python Debugging' })
+            vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Toggle Breakpoint' })
+            vim.keymap.set('n', '<leader>do', dap.step_over, { desc = 'Step Over' })
+            vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Step Into' })
+            vim.keymap.set('n', '<leader>du', dap.step_out, { desc = 'Step Out' })
         end,
     },
     -- DAP UI for a better debugging experience
@@ -87,7 +87,18 @@ require("lazy").setup({
         'rcarriga/nvim-dap-ui',
         dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
         config = function()
-            require('dapui').setup()
+            require('dapui').setup({
+                layouts = {
+                    {
+                        elements = {
+                            { id = "scopes", size = 0.5 },
+                            { id = "repl", size = 0.5 },
+                        },
+                        size = 40,
+                        position = "right",
+                    },
+                },
+            })
             -- Automatically open and close the DAP UI
             local dap, dapui = require('dap'), require('dapui')
             dap.listeners.after.event_initialized['dapui_config'] = function()
@@ -99,6 +110,8 @@ require("lazy").setup({
             dap.listeners.before.event_exited['dapui_config'] = function()
                 dapui.close()
             end
+
+        vim.keymap.set('n', '<leader>dc', require('dap.repl').clear, { desc = 'Clear DAP REPL' })
         end,
     },
     -- Python-specific DAP configuration
