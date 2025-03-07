@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.opt.clipboard = "unnamed,unnamedplus"
+vim.g.omni_sql_no_default_maps = 1
 
 vim.opt.shell = "pwsh"
 vim.opt.shellcmdflag = "-NoLogo -Command"
