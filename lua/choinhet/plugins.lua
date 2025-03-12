@@ -33,6 +33,9 @@ require("lazy").setup({
     -- Surround
     { "tpope/vim-surround",                event = "VeryLazy" },
 
+    -- Surround
+    { "tpope/vim-fugitive",                event = "VeryLazy" },
+
     -- Mason (LSP Manager)
     { "williamboman/mason.nvim",           cmd = "Mason" },
     { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
