@@ -58,6 +58,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
         vim.keymap.set({ 'n', 'x' }, '<leader>f', function() vim.lsp.buf.format() end, opts)
+        vim.keymap.set('n', 'gn', function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set('n', 'ge', function()
             vim.diagnostic.setqflist()
             vim.cmd('copen')
