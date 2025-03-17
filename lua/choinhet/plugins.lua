@@ -32,7 +32,8 @@ require("lazy").setup({
         config = function()
             vim.keymap.set("n", "<leader>g", ":G<CR>", { desc = "Open Fugitive" })
             vim.keymap.set("n", "<leader>gc", ":G add -A | Git commit<CR>", { desc = "Commit All" })
-            vim.keymap.set("n", "<leader>ga", ":G add -A | Git commit --amend --no-edit<CR>", { desc = "Ammend commit all" })
+            vim.keymap.set("n", "<leader>ga", ":G add -A | Git commit --amend --no-edit<CR>",
+                { desc = "Ammend commit all" })
             vim.keymap.set("n", "<leader>gp", ":Git push<CR>", { desc = "Git Push" })
         end,
     },
@@ -140,5 +141,10 @@ require("lazy").setup({
                 },
             }
         end,
+    },
+    {
+        'dhruvasagar/vim-table-mode',
+        config = function()
+        end
     }
 })
