@@ -62,6 +62,10 @@ require("lazy").setup({
         event = "InsertEnter",
     },
     {
+        "saadparwaiz1/cmp_luasnip",
+        event = "InsertEnter",
+    },
+    {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()

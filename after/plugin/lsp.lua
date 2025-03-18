@@ -1,21 +1,21 @@
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
-    "lua_ls",                   -- Lua
-    "rust_analyzer",            -- Rust
-    "pyright",                  -- Python LSP
-    "ruff",                     -- Python linter
-    "cssls",                    -- CSS LSP (CSS, SCSS, LESS)
-    "html",                     -- HTML LSP
-    "jsonls",                   -- JSON LSP
-    "marksman",                 -- Markdown LSP
-    "ts_ls",                 -- TypeScript/JavaScript LSP
-    "tailwindcss",              -- Tailwind CSS LSP
-    "taplo",                    -- TOML LSP
-    "gopls",                    -- Go LSP
-    "eslint",                   -- ESLint for JS/TS
-    "emmet_ls",                 -- Emmet LSP
-},
+        "lua_ls",
+        "rust_analyzer",
+        "pyright",
+        "ruff",
+        "cssls",
+        "html",
+        "jsonls",
+        "marksman",
+        "ts_ls",
+        "tailwindcss",
+        "taplo",
+        "gopls",
+        "eslint",
+        "emmet_ls",
+    },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({})
@@ -24,15 +24,24 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
+
 cmp.setup({
-    sources = {
-        {name = 'nvim_lsp'},
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    mapping = {
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     snippet = {
         expand = function(args)
-            vim.snippet.expand(args.body)
+            require('luasnip').lsp_expand(args.body)
         end,
     },
-    mapping = cmp.mapping.preset.insert({}),
+    sources = cmp.config.sources({
+        { name = 'luasnip' },
+        { name = 'nvim_lsp' },
+        { name = 'buffer',  keyword_length = 2 },
+        { name = 'path',    keyword_length = 2 },
+    }),
 })
-
