@@ -25,27 +25,35 @@ require('mason-lspconfig').setup({
 
 local cmp = require('cmp')
 
+local select_next = cmp.mapping(function(fallback)
+    if cmp.visible() then
+        cmp.select_next_item()
+    else
+        fallback()
+    end
+end, { 'i', 's' })
+
+local select_prev = cmp.mapping(function(fallback)
+    if cmp.visible() then
+        cmp.select_prev_item()
+    else
+        fallback()
+    end
+end, { 'i', 's' })
+
+
 cmp.setup({
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
     mapping = {
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
+        ['<Tab>'] = select_next,
+        ['<S-Tab>'] = select_prev,
+        ['<C-n>'] = select_next,
+        ['<C-p>'] = select_prev,
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     },
     snippet = {
         expand = function(args)
