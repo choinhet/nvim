@@ -7,6 +7,7 @@ vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakp
 vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Step Over" })
 vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step Into" })
 vim.keymap.set("n", "<leader>du", dap.step_out, { desc = "Step Out" })
+vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "Quit Debugger Session" })
 
 dapui.setup({
     layouts = {
@@ -15,7 +16,7 @@ dapui.setup({
                 { id = "scopes", size = 0.5 },
                 { id = "repl",   size = 0.5 },
             },
-            size = 60,
+            size = 100,
             position = "right",
         },
     },
@@ -52,5 +53,6 @@ dap.configurations.python = {
             local current_filepath = vim.fn.expand("%:.:r")
             return current_filepath:gsub("[\\/]", ".")
         end,
+        console="integratedTerminal"
     },
 }
