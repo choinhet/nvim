@@ -1,6 +1,8 @@
-vim.g.python3_host_prog = 'python'
+vim.g.python3_host_prog = "python"
 
-require 'nvim-treesitter.configs'.setup {
+local treesitter_configs = require("nvim-treesitter.configs")
+
+treesitter_configs.setup({
     ensure_installed = { "help", "javascript", "typescript", "python", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
     ignore_install = { "help" },
     sync_install = false,
@@ -9,4 +11,4 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
         additional_vim_regex_highlighting = false,
     },
-}
+})

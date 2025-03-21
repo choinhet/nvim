@@ -28,30 +28,30 @@ vim.keymap.set("n", "<space>a", "ggVG", { noremap = true, silent = true })
 vim.keymap.set("n", "<space>f", "")
 
 -- Visual mode mappings for indentation
-vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
-vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Normal mode mappings
-vim.keymap.set('n', 'Y', 'y$', { desc = 'Yank to the end of the line' })
-vim.keymap.set('n', '*', '*``', { desc = 'Search for word under cursor and return cursor to original position' })
+vim.keymap.set("n", "Y", "y$", { desc = "Yank to the end of the line" })
+vim.keymap.set("n", "*", "*``", { desc = "Search for word under cursor and return cursor to original position" })
 
 -- Visual mode paste mappings
-vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste and reselect, keeping register intact' })
+vim.keymap.set("v", "p", '"_dP', { desc = "Paste and reselect, keeping register intact" })
 
 -- Scroll mappings with cursor centering
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center cursor' })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center cursor' })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
 
-vim.keymap.set('n', '<leader>o', function() vim.ui.open(vim.fn.expand("%")) end)
+vim.keymap.set("n", "<leader>o", function() vim.ui.open(vim.fn.expand("%")) end)
 
-vim.keymap.set('n', '<leader>rp', function()
+vim.keymap.set("n", "<leader>rp", function()
     local current_filepath = vim.fn.expand("%:.:r")
     local module_path = current_filepath:gsub("[\\/]", ".")
     local command = string.format("python -m %s", module_path)
     vim.api.nvim_command("vsplit | terminal " .. command)
 end)
 
-vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', { noremap = true, silent = true })
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>cp", function()
   vim.fn.setreg("+", vim.fn.expand("%:t"))

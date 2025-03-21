@@ -1,6 +1,7 @@
-local builtin = require('telescope.builtin')
+local builtin = require("telescope.builtin")
+local telescope = require("telescope")
 
-require('telescope').setup({
+telescope.setup({
   defaults = {
     cwd = function()
       return vim.fn.getcwd()
@@ -30,9 +31,9 @@ require('telescope').setup({
   },
 })
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>')
-vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>')
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>")
