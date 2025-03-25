@@ -17,7 +17,10 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.textwidth = 80
+vim.opt.wrapmargin = 0
+vim.opt.formatoptions:append("t")
+vim.opt.linebreak = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
