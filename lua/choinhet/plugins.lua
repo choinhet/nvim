@@ -71,8 +71,11 @@ require("lazy").setup({
         "dhruvasagar/vim-table-mode",
     },
     {
+        "nvim-tree/nvim-web-devicons",
+    },
+    {
         "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         opts = {},
     }
 })
