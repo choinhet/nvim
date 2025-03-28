@@ -31,8 +31,15 @@ telescope.setup({
   },
 })
 
+local conf = require('telescope.config').values
+local grep = function()
+    builtin.live_grep {
+      vimgrep_arguments = table.insert(conf.vimgrep_arguments, '--fixed-strings'),
+    }
+end
+
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fg", grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>")

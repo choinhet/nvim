@@ -3,7 +3,7 @@ vim.opt.clipboard = "unnamed,unnamedplus"
 vim.g.omni_sql_no_default_maps = 1
 
 vim.opt.shell = "pwsh"
-vim.opt.shellcmdflag = "-NoLogo -Command"
+vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
 
